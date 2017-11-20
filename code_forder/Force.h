@@ -1,13 +1,13 @@
 #pragma once
 
-class force		//simulation¿¡¼­ ÈûÀ» ³ªÅ¸³»´Â Å¬·¡½º
+class force		//simulationì—ì„œ í˜ì„ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
 {
 private:
-	double x;	//x¹æÇâ Èû
-	double y;	//y¹æÇâ Èû
+	double x;	//xë°©í–¥ í˜
+	double y;	//yë°©í–¥ í˜
 
 public:
-	void print_force();		//forceÀÇ Á¤º¸¸¦ Ãâ·ÂÇÑ´Ù
-	double get_force_x();	//x¹æÇâÀÇ ÈûÀ» ¹İÈ¯ÇÑ´Ù.
-	double get_force_y();	//y¹æÇâÀÇ ÈûÀ» ¹İÈ¯ÇÑ´Ù.
+	void print_force();	//forceì˜ ì •ë³´ë¥¼ ì¶œë ¥í•œë‹¤
+	double get_force_x();	//xë°©í–¥ì˜ í˜ì„ ë°˜í™˜í•œë‹¤.
+	double get_force_y();	//yë°©í–¥ì˜ í˜ì„ ë°˜í™˜í•œë‹¤.
 };
