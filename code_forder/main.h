@@ -1,6 +1,6 @@
 #pragma once
-#include<time.h>
+#include<time.h>//íƒ€ì´ë¨¸ë¥¼ ì‹¤í–‰ì‹œì¼œì£¼ê¸° ìœ„í•œ cë‚´ë¶€ ì‹œê°„í•¨ìˆ˜
 #include"Utility.h"
 
-void run_simulation_ru(int duration); //ru¸í·É¾î ½Ã¹Ä·¹ÀÌ¼ÇÀ» duration½Ã°£µ¿¾È ½ÇÇàÇÑ´Ù
-void run_simulation_rv(int duration); //rv¸í·É¾î ½Ã¹Ä·¹ÀÌ¼ÇÀ» duration½Ã°£µ¿¾È ½ÇÇàÇÑ´Ù
+void run_simulation_ru(int duration); //ruëª…ë ¹ì–´ ì‹œë®¬ë ˆì´ì…˜ì„ durationì‹œê°„ë™ì•ˆ ì‹¤í–‰í•œë‹¤
+void run_simulation_rv(int duration); //rvëª…ë ¹ì–´ ì‹œë®¬ë ˆì´ì…˜ì„ durationì‹œê°„ë™ì•ˆ ì‹¤í–‰í•œë‹¤
