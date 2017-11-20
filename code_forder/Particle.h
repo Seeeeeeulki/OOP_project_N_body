@@ -1,13 +1,13 @@
 #pragma once
 
-class particle			//N_body_simulation¿¡¼­ particleÀ» Ç¥Çö
+class particle			//N_body_simulationì—ì„œ particleì„ í‘œí˜„
 {
 protected:
-	double location[2]; //particleÀÇ À§Ä¡
-	double velocity[2]; //particleÀÇ ¼Óµµ
-	double mass;		//particleÀÌ °¡Áø Áú·®
-	bool movavle;		//particleÀÇ ¿òÁ÷ÀÓ ¿©ºÎ¸¦ °áÁ¤ÇÏ´Â boolean°ª
+	double location[2]; //particleì˜ ìœ„ì¹˜ [x,y]
+	double velocity[2]; //particleì˜ ì†ë„ [x,y]
+	double mass;		//particleì´ ê°€ì§„ ì§ˆëŸ‰
+	bool movavle;		//particleì˜ ì›€ì§ì„ ì—¬ë¶€ë¥¼ ê²°ì •í•˜ëŠ” booleanê°’
 
 public:
-	void Print_particle(); //particle objectÀÇ Á¤º¸¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+	void Print_particle(); //particle objectì˜ ì •ë³´ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 };
