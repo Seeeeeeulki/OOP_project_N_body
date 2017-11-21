@@ -1,8 +1,8 @@
 #include "main.h"
 #include <iostream>
 #include <string>
-#include <sstream>		//stringsteamÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ğ
-#include <iterator>		//istream_iteratorÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ğ
+#include <sstream>		//stringsteamì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì„ ì–¸
+#include <iterator>		//istream_iteratorì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì„ ì–¸
 
 
 void run_simulation_ru(int duration)
@@ -15,17 +15,17 @@ void run_simulation_rv(int duration)
 
 int main(void)
 {
-	utility utility; //¸Ş¸ğ¸®¸¦ °ü¸®ÇÒ Å¬·¡½º º¯¼ö
-	std::string complete_command; //¸í·É¾î¸¦ ÀúÀåÇÏ´Â º¯¼ö
+	utility utility; //ë©”ëª¨ë¦¬ë¥¼ ê´€ë¦¬í•  í´ë˜ìŠ¤ ë³€ìˆ˜
+	std::string complete_command; //ëª…ë ¹ì–´ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
 
 
-	while (1) //pp¹ŞÀ» ¶§±îÁö ¹İº¹ÇÑ´Ù
+	while (1) //ppë°›ì„ ë•Œê¹Œì§€ ë°˜ë³µí•œë‹¤
 	{
 		std::cout << "Enter a command: ";
-		std::getline(std::cin, complete_command);				//ÇÑ ÁÙÀ» ÅëÂ°·Î ÀÔ·Â¹Ş´Â´Ù
-		std::stringstream stringstream(complete_command);		//sringÇüÀ» srtingstream class¿¡ ³Ö´Â´Ù
-		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//½ºÆäÀÌ½º¹Ù¸¦ ±âÁØÀ¸·Î splitÇÑ´Ù
-		//splitµÈ ÀÔ·Â°ªÀº Â÷·Ê´ë·Î command vector¿¡ ½×ÀÌ°Ô µÈ´Ù
+		std::getline(std::cin, complete_command);				//í•œ ì¤„ì„ í†µì§¸ë¡œ ì…ë ¥ë°›ëŠ”ë‹¤
+		std::stringstream stringstream(complete_command);		//sringí˜•ì„ srtingstream classì— ë„£ëŠ”ë‹¤
+		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//ìŠ¤í˜ì´ìŠ¤ë°”ë¥¼ ê¸°ì¤€ìœ¼ë¡œ splití•œë‹¤
+		//splitëœ ì…ë ¥ê°’ì€ ì°¨ë¡€ëŒ€ë¡œ command vectorì— ìŒ“ì´ê²Œ ëœë‹¤
 
 		if (command[0] == "pa") //pa: print information about all the particles
 		{
@@ -121,26 +121,26 @@ int main(void)
 
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
 		{
-			std::cout << "ruÀÔ·ÂµÊ" << std::endl;
+			std::cout << "ruì…ë ¥ë¨" << std::endl;
 		}
 
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick
 		{
-			std::cout << "rvÀÔ·ÂµÊ" << std::endl;
+			std::cout << "rvì…ë ¥ë¨" << std::endl;
 		}
 
 		else if (command[0] == "qq") //stop the simulation
 		{
 			break;
 		}
-
-		else  //ÇØ´çÇÏ´Â ¸í·É¾î°¡ ¾øÀ» ¶§
+		
+		else  //í•´ë‹¹í•˜ëŠ” ëª…ë ¹ì–´ê°€ ì—†ì„ ë•Œ
 		{
-			std::cout << "Àß¸øµÈ ¸í·É¾î¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù." << std::endl;
+			std::cout << "ì˜ëª»ëœ ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤." << std::endl;
 		}
 	}
 
-	std::cout <<"Done(ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù)" << std::endl;
+	std::cout <<"Done(í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤)" << std::endl;
 
 	return 0;
 }
