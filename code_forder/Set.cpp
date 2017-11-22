@@ -1,4 +1,8 @@
 #include "Set.h"
+set::set(int num)
+{
+	set_num = num;
+}
 
 void set::Print_Set()
 {

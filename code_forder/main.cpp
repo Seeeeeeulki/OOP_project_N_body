@@ -4,6 +4,7 @@
 #include <iterator>		//istream_iterator을 사용하기 위해 선언
 
 
+
 void run_simulation_ru(int duration)
 {
 }
@@ -20,6 +21,7 @@ int main(void)
 
 	while (1) //pp받을 때까지 반복한다
 	{
+		std::cout << std::endl; //한 줄 띄우고 시작
 		std::cout << "Enter a command: ";
 		std::getline(std::cin, complete_command);				//한 줄을 통째로 입력받는다
 		std::stringstream stringstream(complete_command);		//sring형을 srtingstream class에 넣는다
@@ -34,15 +36,19 @@ int main(void)
 			}
 			for (int i = 0; i < utility.all_particle.size(); i++)
 			{
-				std::cout << "Particle: " << i << std::endl;
 				utility.all_particle[i]->Print_particle();
 			}
 		}
 
 		else if (command[0] == "pp") //pp <particle>: print information of particle <particle>
 		{
-			std::cout << "Particle: " << command[1] << std::endl;
-			utility.all_particle[std::stod(command[1])]->Print_particle();
+			for(int i =0; i<utility.all_particle.size(); i++)
+			{
+				if (utility.all_particle[i]->particle_num == std::stoi(command[1])) //particle_num이 command의 숫자와 동일할 때 출력한다
+				{
+					utility.all_particle[i]->Print_particle();
+				}
+			}
 		}
 
 		else if (command[0] == "ps") //ps <set>: print information of set <set>
@@ -57,31 +63,40 @@ int main(void)
 
 		else if (command[0] == "pt") //pt: print the current time (in seconds)
 		{
-
+			std::cout << "Current time is " << utility.time << std::endl;
 		}
 
 		else if (command[0] == "pm") //pm: print memory usage, i.e., the number of particles, sets and forces
 		{
-
+			utility.print_usage();
 		}
 
 		else if (command[0] == "pg") //pg: print whether gravity is enabled
 		{
-
+			if (utility.enable_gravity == false)
+			{
+				std::cout << "Gravity is inactive now" << std::endl;
+			}
+			else
+			{
+				std::cout << "Gravity is avitve now" << std::endl;
+			}
 		}
 
 		else if (command[0] == "ap") //ap <particle> <mass> <x> <y> <v_x> <v_y>: Add a particle <particle> with given mass and initial x, y 
 									//location and x, y speed, i.e., initial location is given as a vector (<x>, <y>) and initial velocity 
 									//is given as a vector (<v_x>, <v_y>)
 		{
-			utility.all_particle.push_back(new particle{ std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
+			utility.all_particle.push_back(new particle{std::stoi(command[1]), std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
 			//particle을 new로 선언하고 주소를 all_particle vector변수에 차례대로 쌓는다
-			std::cout << "particle " << command[1] << " added" << std::endl;
+			std::cout << "particle " << utility.all_particle[utility.all_particle.size()-1]->particle_num << " added" << std::endl;
 		}
 
 		else if (command[0] == "as") //as <set>: add a set <set>
 		{
-
+			utility.all_set.push_back(new set(std::stoi(command[1])));
+			//set을 new로 선언하고 주소를 all_set vector변수에 차례대로 쌓는다
+			std::cout << "Set " << utility.all_set[utility.all_set.size() - 1]->set_num << " added" << std::endl;
 		}
 
 		else if (command[0] == "ae") //ae <set> <particle>: add a particle <particle> to a set <set>
