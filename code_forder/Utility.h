@@ -3,9 +3,9 @@
 class utility
 {
 public:
-	int particle_number=0;			//particle의 수를 저장한다
-	int set_number=0;				//set의 수를 저장한다
-	int force_number=0;				//force의 수를 저장한다
+	std::vector<particle*> all_particle;//모든 particle를 저장한다
+	std::vector<set*> all_set;			//모든 set를 저장한다
+	std::vector<force*> all_force;		//모든 force를 저장한다
 	bool enable_gravity = false;	//gravity 기능 여부를 결정하는 변수
 
 	void print_usage();				//memory 사용량 출력

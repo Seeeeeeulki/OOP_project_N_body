@@ -1,8 +1,7 @@
 #include "main.h"
-#include <iostream>
 #include <string>
-#include <sstream>		//stringsteamì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì„ ì–¸
-#include <iterator>		//istream_iteratorì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì„ ì–¸
+#include <sstream>		//stringsteamÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ğ
+#include <iterator>		//istream_iteratorÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ğ
 
 
 void run_simulation_ru(int duration)
@@ -15,26 +14,35 @@ void run_simulation_rv(int duration)
 
 int main(void)
 {
-	utility utility; //ë©”ëª¨ë¦¬ë¥¼ ê´€ë¦¬í•  í´ë˜ìŠ¤ ë³€ìˆ˜
-	std::string complete_command; //ëª…ë ¹ì–´ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
+	utility utility; //¸Ş¸ğ¸®¸¦ °ü¸®ÇÒ Å¬·¡½º º¯¼ö
+	std::string complete_command; //¸í·É¾î¸¦ ÀúÀåÇÏ´Â º¯¼ö
 
 
-	while (1) //ppë°›ì„ ë•Œê¹Œì§€ ë°˜ë³µí•œë‹¤
+	while (1) //pp¹ŞÀ» ¶§±îÁö ¹İº¹ÇÑ´Ù
 	{
 		std::cout << "Enter a command: ";
-		std::getline(std::cin, complete_command);				//í•œ ì¤„ì„ í†µì§¸ë¡œ ì…ë ¥ë°›ëŠ”ë‹¤
-		std::stringstream stringstream(complete_command);		//sringí˜•ì„ srtingstream classì— ë„£ëŠ”ë‹¤
-		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//ìŠ¤í˜ì´ìŠ¤ë°”ë¥¼ ê¸°ì¤€ìœ¼ë¡œ splití•œë‹¤
-		//splitëœ ì…ë ¥ê°’ì€ ì°¨ë¡€ëŒ€ë¡œ command vectorì— ìŒ“ì´ê²Œ ëœë‹¤
+		std::getline(std::cin, complete_command);				//ÇÑ ÁÙÀ» ÅëÂ°·Î ÀÔ·Â¹Ş´Â´Ù
+		std::stringstream stringstream(complete_command);		//sringÇüÀ» srtingstream class¿¡ ³Ö´Â´Ù
+		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//½ºÆäÀÌ½º¹Ù¸¦ ±âÁØÀ¸·Î splitÇÑ´Ù
+		//splitµÈ ÀÔ·Â°ªÀº Â÷·Ê´ë·Î command vector¿¡ ½×ÀÌ°Ô µÈ´Ù
 
 		if (command[0] == "pa") //pa: print information about all the particles
 		{
-
+			if (utility.all_particle.size() == 0)
+			{
+				std::cout << "No particles" << std::endl;
+			}
+			for (int i = 0; i < utility.all_particle.size(); i++)
+			{
+				std::cout << "Particle: " << i << std::endl;
+				utility.all_particle[i]->Print_particle();
+			}
 		}
 
 		else if (command[0] == "pp") //pp <particle>: print information of particle <particle>
 		{
-
+			std::cout << "Particle: " << command[1] << std::endl;
+			utility.all_particle[std::stod(command[1])]->Print_particle();
 		}
 
 		else if (command[0] == "ps") //ps <set>: print information of set <set>
@@ -66,7 +74,9 @@ int main(void)
 									//location and x, y speed, i.e., initial location is given as a vector (<x>, <y>) and initial velocity 
 									//is given as a vector (<v_x>, <v_y>)
 		{
-
+			utility.all_particle.push_back(new particle{ std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
+			//particleÀ» new·Î ¼±¾ğÇÏ°í ÁÖ¼Ò¸¦ all_particle vectorº¯¼ö¿¡ Â÷·Ê´ë·Î ½×´Â´Ù
+			std::cout << "particle " << command[1] << " added" << std::endl;
 		}
 
 		else if (command[0] == "as") //as <set>: add a set <set>
@@ -121,26 +131,26 @@ int main(void)
 
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
 		{
-			std::cout << "ruì…ë ¥ë¨" << std::endl;
+			std::cout << "ruÀÔ·ÂµÊ" << std::endl;
 		}
 
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick
 		{
-			std::cout << "rvì…ë ¥ë¨" << std::endl;
+			std::cout << "rvÀÔ·ÂµÊ" << std::endl;
 		}
 
 		else if (command[0] == "qq") //stop the simulation
 		{
 			break;
 		}
-		
-		else  //í•´ë‹¹í•˜ëŠ” ëª…ë ¹ì–´ê°€ ì—†ì„ ë•Œ
+
+		else  //ÇØ´çÇÏ´Â ¸í·É¾î°¡ ¾øÀ» ¶§
 		{
-			std::cout << "ì˜ëª»ëœ ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤." << std::endl;
+			std::cout << "Àß¸øµÈ ¸í·É¾î¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù." << std::endl;
 		}
 	}
 
-	std::cout <<"Done(í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤)" << std::endl;
+	std::cout <<"Done(ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù)" << std::endl;
 
 	return 0;
 }
