@@ -12,7 +12,7 @@ public:
 
 	set(int num);
 	void Print_Set();					//set의 정보를 출력한다
-	void add_particle(particle A);		//set의 particle list에 particle A를 넣는다.
+	void add_particle(particle* A);		//set의 particle list에 particle A를 넣는다.
 	void add_force(force A);			//set의 force에 force A의 힘을 더한다
 	void delete_particle(int A);		//특정 particle을 set에서 제외한다.
 };

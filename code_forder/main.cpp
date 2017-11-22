@@ -42,18 +42,13 @@ int main(void)
 
 		else if (command[0] == "pp") //pp <particle>: print information of particle <particle>
 		{
-			for(int i =0; i<utility.all_particle.size(); i++)
-			{
-				if (utility.all_particle[i]->particle_num == std::stoi(command[1])) //particle_num이 command의 숫자와 동일할 때 출력한다
-				{
-					utility.all_particle[i]->Print_particle();
-				}
-			}
+			find_particle(utility, std::stoi(command[1]))->Print_particle();
 		}
 
 		else if (command[0] == "ps") //ps <set>: print information of set <set>
 		{
-
+			std::cout << "--- Set " << find_set(utility, std::stoi(command[1]))->set_num << " ---" << std::endl;
+			find_set(utility, std::stoi(command[1]))->Print_Set();
 		}
 
 		else if (command[0] == "pf") //pf: print information of forces
@@ -101,7 +96,8 @@ int main(void)
 
 		else if (command[0] == "ae") //ae <set> <particle>: add a particle <particle> to a set <set>
 		{
-
+			find_set(utility, std::stoi(command[1]))->add_particle(find_particle(utility, std::stoi(command[2])));
+			std::cout << "Particle " << find_particle(utility, std::stoi(command[2]))->particle_num << " is added to set " << find_set(utility, std::stoi(command[1]))->set_num << std::endl;
 		}
 
 		else if (command[0] == "af") //af <force> <set> <x> <y>: add a force <force>, which is imposed on the particles in set <set> whose size is given as a vector (<x>, <y>)
