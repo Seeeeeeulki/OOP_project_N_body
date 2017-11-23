@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string>
 #include <sstream>		//stringsteam을 사용하기 위해 선언
 #include <iterator>		//istream_iterator을 사용하기 위해 선언
 
@@ -42,18 +41,39 @@ int main(void)
 
 		else if (command[0] == "pp") //pp <particle>: print information of particle <particle>
 		{
-			find_particle(utility, std::stoi(command[1]))->Print_particle();
+			if (find_particle(utility, command[1])->particle_name == "no_particle")
+			{
+				std::cout << "해당하는 particle이 없습니다." << std::endl;
+			}
+			else
+			{
+				find_particle(utility, command[1])->Print_particle();
+			}
 		}
 
 		else if (command[0] == "ps") //ps <set>: print information of set <set>
 		{
-			std::cout << "--- Set " << find_set(utility, std::stoi(command[1]))->set_num << " ---" << std::endl;
-			find_set(utility, std::stoi(command[1]))->Print_Set();
+			if (find_set(utility, command[1])->set_name == "no_set")
+			{
+				std::cout << "해당하는 set이 없습니다." << std::endl;
+			}
+			else
+			{
+				std::cout << "--- Set " << find_set(utility, command[1])->set_name << " ---" << std::endl;
+				find_set(utility, command[1])->Print_Set();
+			}
 		}
 
 		else if (command[0] == "pf") //pf: print information of forces
 		{
-
+			if (find_force(utility, command[1])->force_name == "no_force")
+			{
+				std::cout << "해당하는 force가 없습니다." << std::endl;
+			}
+			else
+			{
+				find_force(utility, command[1])->print_force();
+			}
 		}
 
 		else if (command[0] == "pt") //pt: print the current time (in seconds)
@@ -82,27 +102,47 @@ int main(void)
 									//location and x, y speed, i.e., initial location is given as a vector (<x>, <y>) and initial velocity 
 									//is given as a vector (<v_x>, <v_y>)
 		{
-			utility.all_particle.push_back(new particle{std::stoi(command[1]), std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
+			utility.all_particle.push_back(new particle{command[1], std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
 			//particle을 new로 선언하고 주소를 all_particle vector변수에 차례대로 쌓는다
-			std::cout << "particle " << utility.all_particle[utility.all_particle.size()-1]->particle_num << " added" << std::endl;
+			std::cout << "particle " << utility.all_particle[utility.all_particle.size()-1]->particle_name << " added" << std::endl;
 		}
 
 		else if (command[0] == "as") //as <set>: add a set <set>
 		{
-			utility.all_set.push_back(new set(std::stoi(command[1])));
+			utility.all_set.push_back(new set(command[1]));
 			//set을 new로 선언하고 주소를 all_set vector변수에 차례대로 쌓는다
-			std::cout << "Set " << utility.all_set[utility.all_set.size() - 1]->set_num << " added" << std::endl;
+			std::cout << "Set " << utility.all_set[utility.all_set.size() - 1]->set_name << " added" << std::endl;
 		}
 
 		else if (command[0] == "ae") //ae <set> <particle>: add a particle <particle> to a set <set>
 		{
-			find_set(utility, std::stoi(command[1]))->add_particle(find_particle(utility, std::stoi(command[2])));
-			std::cout << "Particle " << find_particle(utility, std::stoi(command[2]))->particle_num << " is added to set " << find_set(utility, std::stoi(command[1]))->set_num << std::endl;
+			if (find_particle(utility, command[2])->particle_name == "no_particle")
+			{
+				std::cout << "해당하는 particle이 없습니다." << std::endl;
+			}
+			else if (find_set(utility, command[1])->set_name == "no_set")
+			{
+				std::cout << "해당하는 set이 없습니다." << std::endl;
+			}
+			else
+			{
+				find_set(utility, command[1])->add_particle(find_particle(utility, command[2]));
+				std::cout << "Particle " << find_particle(utility, command[2])->particle_name << " is added to set " << find_set(utility, command[1])->set_name << std::endl;
+			}
 		}
 
 		else if (command[0] == "af") //af <force> <set> <x> <y>: add a force <force>, which is imposed on the particles in set <set> whose size is given as a vector (<x>, <y>)
 		{
-
+			if (find_set(utility, command[2])->set_name == "no_set")
+			{
+				std::cout << "해당하는 set이 없습니다." << std::endl;
+			}
+			else
+			{
+				utility.all_force.push_back(new force(command[1], command[2], std::stod(command[3]), std::stod(command[4])));
+				find_set(utility, command[2])->add_force(find_force(utility, command[1]));
+				std::cout << "Force " << find_force(utility, command[1])->force_name << " added" << std::endl;;
+			}
 		}
 
 		else if (command[0] == "dp") //dp <particle>: delete particle <particle>

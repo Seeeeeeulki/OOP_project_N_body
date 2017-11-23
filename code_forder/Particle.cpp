@@ -1,7 +1,7 @@
 #include "Particle.h"
-particle::particle(int num, double mass, double x, double y, double v_x, double v_y)
+particle::particle(std::string name, double mass, double x, double y, double v_x, double v_y)
 {
-	particle_num = num; //particle_num 초기화
+	particle_name = name; //particle_name 초기화
 	this->mass = mass;	//mass 초기화
 	location[0] = x;	//x위치 초기화
 	location[1] = y;	//y위치 초기화
@@ -11,7 +11,7 @@ particle::particle(int num, double mass, double x, double y, double v_x, double 
 
 void particle::Print_particle()
 {
-	std::cout << "Particle: " << particle_num << std::endl;
+	std::cout << "Particle: " << particle_name << std::endl;
 	std::cout << "	Location: (" << location[0] << ", " << location[1] << ")" << std::endl;
 	std::cout << "	Velocity: (" << velocity[0] << ", " << velocity[1] << ")" << std::endl;
 }

@@ -1,7 +1,7 @@
 #include "Set.h"
-set::set(int num)
+set::set(std::string name)
 {
-	set_num = num;
+	set_name = name;
 }
 
 void set::Print_Set()
@@ -17,8 +17,10 @@ void set::add_particle(particle* A)
 	particle_set.push_back(A);
 }
 
-void set::add_force(force A)
+void set::add_force(force* A)
 {
+	force_x += A->get_force_x();
+	force_y += A->get_force_y();
 }
 
 void set::delete_particle(int A)

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <String>
 
 class particle			//N_body_simulation에서 particle을 표현
 {
@@ -10,7 +11,7 @@ protected:
 	bool movavle;			//particle의 움직임 여부를 결정하는 boolean값
 
 public:
-	int particle_num;	//particle 번호
-	particle(int num, double mass, double x, double y, double v_x, double v_y); //particle 클래스 변수 초기화 하는 함수
+	std::string particle_name;	//particle 이름
+	particle(std::string name, double mass, double x, double y, double v_x, double v_y); //particle 클래스 변수 초기화 하는 함수
 	void Print_particle(); //particle object의 정보를 출력하는 함수
 };
