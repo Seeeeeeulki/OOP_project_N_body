@@ -7,8 +7,15 @@ void utility::print_usage()
 	std::cout << "Forces: " << all_force.size() << std::endl;
 }
 
-void utility::delete_particle()
+void utility::delete_particle(particle* A)
 {
+	for (int i = 0; i < all_particle.size(); i++)
+	{
+		if (all_particle[i] == A) //주소가 같은지 확인한다
+		{
+			all_particle.erase(all_particle.begin() + i);
+		}
+	}
 }
 
 void utility::delete_force()

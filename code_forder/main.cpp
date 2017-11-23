@@ -147,7 +147,21 @@ int main(void)
 
 		else if (command[0] == "dp") //dp <particle>: delete particle <particle>
 		{
-
+			//set.particle_set에서 erase(particle이 들어간 set에서 erase)
+			//utility.all_particle에서 erase
+			//미리 복사해둔 주소를 delete
+			if (find_particle(utility, command[1])->particle_name == "no_particle")
+			{
+				std::cout << "해당하는 particle이 없습니다." << std::endl;
+			}
+			else
+			{
+				particle* erase = find_particle(utility, command[1]);
+				find_set(utility, command[1])->delete_particle(find_particle(utility, command[1]));
+				utility.delete_particle(find_particle(utility, command[1]));
+				std::cout<<"Particle " << erase->particle_name << " deleted" << std::endl;
+				delete erase;
+			}
 		}
 
 		else if (command[0] == "de") //de <set> <particle>: delete particle <particle> from set <set>. Note that this does not delete particle, but remove a particle from a set
