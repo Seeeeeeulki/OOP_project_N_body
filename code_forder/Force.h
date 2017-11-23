@@ -13,11 +13,11 @@ public:
 
 	force(std::string force_name, std::string set_force, double x, double y); //force 초기화 함수
 	void print_force();		//force의 정보를 출력한다
-	void set_force_x(double force_x) 
+	void set_force_x(double force_x) //x방향의 힘을 설정한다
 	{
 		x = force_x;
 	}
-	void set_force_y(double force_y)
+	void set_force_y(double force_y) //y방향의 힘을 설정한다
 	{
 		y = force_y;
 	}

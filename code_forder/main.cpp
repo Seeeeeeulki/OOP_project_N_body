@@ -152,7 +152,19 @@ int main(void)
 
 		else if (command[0] == "de") //de <set> <particle>: delete particle <particle> from set <set>. Note that this does not delete particle, but remove a particle from a set
 		{
-
+			if (find_set(utility, command[1])->set_name == "no_set")
+			{
+				std::cout << "해당하는 set이 없습니다." << std::endl;
+			}
+			else if (find_particle(utility, command[2])->particle_name == "no_particle")
+			{
+				std::cout << "해당하는 particle이 없습니다." << std::endl;
+			}
+			else
+			{
+				find_set(utility, command[1])->delete_particle(find_particle(utility, command[2]));
+				std::cout << "Particle " << find_particle(utility, command[2])->particle_name << " deleted form set " << find_set(utility, command[1])->set_name << std::endl;
+			}
 		}
 
 		else if (command[0] == "df") //df <force>: delete force <force>
@@ -167,17 +179,44 @@ int main(void)
 
 		else if (command[0] == "ct") //ct <tick>: change timetick (in seconds)
 		{
-
+			utility.timetick = std::stoi(command[1]);
+			std::cout << "timetick set: " << utility.timetick << std::endl;
 		}
 
 		else if (command[0] == "cg") //cg <bool>: enable gravity if <bool> is "true", and disable gravity if <bool> is "false"
 		{
-
+			if (command[1] == "true")
+			{
+				utility.enable_gravity = true;
+				std::cout << "Gravity enabled" << std::endl;
+			}
+			else if(command[1] == "false")
+			{
+				utility.enable_gravity = false;
+				std::cout << "Gravity disabled" << std::endl;
+			}
+			else
+			{
+				std::cout << "잘못된 명령어 입니다" << std::endl;
+			}
 		}
 
 		else if (command[0] == "cp") //cp <particle> <bool>: fix or unfix the location of particle <particle>, depending on <bool>
 		{
-
+			if (command[2] == "true")
+			{
+				find_particle(utility, command[1])->fixed = true;
+				std::cout << "Particle " << find_particle(utility, command[1])->particle_name << " is set to fixed" << std::endl;
+			}
+			else if (command[2] == "false")
+			{
+				find_particle(utility, command[1])->fixed = false;
+				std::cout << "Particle " << find_particle(utility, command[1])->particle_name << " is set to movavle" << std::endl;
+			}
+			else
+			{
+				std::cout << "잘못된 명령어 입니다" << std::endl;
+			}
 		}
 
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
