@@ -13,6 +13,6 @@ public:
 
 	void print_usage();				//memory 사용량 출력
 	void delete_particle(particle* A);			//particle을 메모리에서 제거
-	void delete_force();			//force를 메모리에서 제거
+	void delete_force(force* A);			//force를 메모리에서 제거
 	void delete_all();				//메로리 초기화
 };

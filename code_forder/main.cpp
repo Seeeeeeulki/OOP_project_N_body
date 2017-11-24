@@ -127,7 +127,6 @@ int main(void)
 			else
 			{
 				find_set(utility, command[1])->add_particle(find_particle(utility, command[2]));
-				std::cout << "Particle " << find_particle(utility, command[2])->particle_name << " is added to set " << find_set(utility, command[1])->set_name << std::endl;
 			}
 		}
 
@@ -141,13 +140,11 @@ int main(void)
 			{
 				utility.all_force.push_back(new force(command[1], command[2], std::stod(command[3]), std::stod(command[4])));
 				find_set(utility, command[2])->add_force(find_force(utility, command[1]));
-				std::cout << "Force " << find_force(utility, command[1])->force_name << " added" << std::endl;;
 			}
 		}
 
 		else if (command[0] == "dp") //dp <particle>: delete particle <particle>
 		{
-			//set.particle_set에서 erase(particle이 들어간 set에서 erase)
 			//utility.all_particle에서 erase
 			//미리 복사해둔 주소를 delete
 			if (find_particle(utility, command[1])->particle_name == "no_particle")
@@ -157,10 +154,9 @@ int main(void)
 			else
 			{
 				particle* erase = find_particle(utility, command[1]);
-				find_set(utility, command[1])->delete_particle(find_particle(utility, command[1]));
-				utility.delete_particle(find_particle(utility, command[1]));
+				utility.delete_particle(find_particle(utility, command[1])); //vector에서 지운다
 				std::cout<<"Particle " << erase->particle_name << " deleted" << std::endl;
-				delete erase;
+				delete erase; //동적할당을 헤재한다
 			}
 		}
 
@@ -183,12 +179,26 @@ int main(void)
 
 		else if (command[0] == "df") //df <force>: delete force <force>
 		{
+			//utility.all_force에서 erase
+			//미리 복사해둔 주소를 delete
+			if (find_force(utility, command[1])->force_name == "no_force")
+			{
+				std::cout << "해당하는 force가 없습니다." << std::endl;
+			}
+			else
+			{
 
+				////구현 해야함
+				force* erase = find_force(utility, command[1]);
+				utility.delete_force(find_force(utility, command[1]));					//vector에서 지운다
+				std::cout << "Force " << erase->force_name << " deleted" << std::endl;
+				delete erase; //동적할당을 헤재한다
+			}
 		}
 
 		else if (command[0] == "da") //da: delete all particles, sets and forces
 		{
-
+			utility.delete_all();
 		}
 
 		else if (command[0] == "ct") //ct <tick>: change timetick (in seconds)
@@ -245,6 +255,8 @@ int main(void)
 
 		else if (command[0] == "qq") //stop the simulation
 		{
+			utility.delete_all();
+			utility.print_usage();
 			break;
 		}
 
