@@ -24,6 +24,11 @@ void set::add_particle(particle* A)
 			std::cout << "이미 포함된 particle입니다." << std::endl;
 			overlap = 1;
 		}
+		if (particle_set[i]->location[0] == A->location[0] && particle_set[i]->location[1] == A->location[1])
+		{
+			std::cout << "이미 해당 위치에 particle이 있습니다." << std::endl;
+			overlap = 1;
+		}
 	}
 	if (overlap == 0)
 	{

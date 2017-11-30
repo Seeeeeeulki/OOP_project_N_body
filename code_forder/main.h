@@ -65,8 +65,8 @@ void run_simulation_ru(utility utility, double duration) //ru명령어 시뮬레
 							double b_mass = utility.all_set[a]->particle_set[b]->mass;//b의 무게
 							double c_mass = utility.all_set[a]->particle_set[c]->mass;//c의 무게
 							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//b와 c의 거리
-							utility.all_set[a]->particle_set[b]->velocity[0] += 6.67259*b_mass*c_mass / r*x_gap*unit_time/pow(10,11);//unit_time만큼의 x축에 대한 만유인력가속을 더해준다.
-							utility.all_set[a]->particle_set[b]->velocity[1] += 6.67259*b_mass*c_mass / r*y_gap*unit_time/pow(10,11);//unit_time만큼의 y축에 대한 만유인력가속을 더해준다.
+							utility.all_set[a]->particle_set[b]->velocity[0] += 6.67259*b_mass / r*x_gap*unit_time/pow(10,11);//unit_time만큼의 x축에 대한 만유인력가속을 더해준다.
+							utility.all_set[a]->particle_set[b]->velocity[1] += 6.67259*b_mass / r*y_gap*unit_time/pow(10,11);//unit_time만큼의 y축에 대한 만유인력가속을 더해준다.
 						}
 					}
 				}
@@ -77,6 +77,13 @@ void run_simulation_ru(utility utility, double duration) //ru명령어 시뮬레
 				{
 					utility.all_set[a]->particle_set[c]->velocity[0] += utility.all_set[a]->force_set[b]->get_force_x() / utility.all_set[a]->particle_set[c]->mass*unit_time;
 					utility.all_set[a]->particle_set[c]->velocity[1] += utility.all_set[a]->force_set[b]->get_force_y() / utility.all_set[a]->particle_set[c]->mass*unit_time;
+				}
+			}
+			for (int i = 0; i < utility.all_set[a]->particle_set.size(); i++)
+			{
+				if (utility.all_set[a]->particle_set[i]->fixed == false) {
+					utility.all_set[a]->particle_set[i]->location[0] += utility.all_set[a]->particle_set[i]->velocity[0] * unit_time;
+					utility.all_set[a]->particle_set[i]->location[1] += utility.all_set[a]->particle_set[i]->velocity[1] * unit_time;
 				}
 			}
 		}
