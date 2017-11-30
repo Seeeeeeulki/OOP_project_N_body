@@ -4,12 +4,10 @@
 
 class particle			//N_body_simulation에서 particle을 표현
 {
-protected:
+public:
 	double location[2]; 	//particle의 위치 [x,y]
 	double velocity[2]; 	//particle의 속도 [x,y]
 	double mass;			//particle이 가진 질량
-
-public:
 	bool fixed = false;			//particle의 움직임 여부를 결정하는 boolean값, 초기값은 false
 	std::string particle_name;	//particle 이름
 

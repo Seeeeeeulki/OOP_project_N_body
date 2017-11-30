@@ -3,15 +3,6 @@
 #include <iterator>		//istream_iterator을 사용하기 위해 선언
 
 
-
-void run_simulation_ru(int duration)
-{
-}
-
-void run_simulation_rv(int duration)
-{
-}
-
 int main(void)
 {
 	utility utility; //메모리를 관리할 클래스 변수
@@ -78,7 +69,7 @@ int main(void)
 
 		else if (command[0] == "pt") //pt: print the current time (in seconds)
 		{
-			std::cout << "Current time is " << utility.time << std::endl;
+			std::cout << "Current time is " << time << std::endl;
 		}
 
 		else if (command[0] == "pm") //pm: print memory usage, i.e., the number of particles, sets and forces
@@ -246,6 +237,10 @@ int main(void)
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
 		{
 			std::cout << "ru입력됨" << std::endl;
+			double duration = atof(command[1].c_str());
+			std::cout << duration << std::endl;
+			run_simulation_ru(utility, duration);
+			std::cout << "simulation started" << std::endl;
 		}
 
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick

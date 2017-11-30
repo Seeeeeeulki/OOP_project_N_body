@@ -8,7 +8,6 @@ public:
 	std::vector<force*> all_force;		//모든 force를 저장한다
 
 	bool enable_gravity = true;			//gravity 기능 여부를 결정하는 변수
-	double time=0;						//current time을 의미하는 변수
 	int timetick = 5;					//timetick을 의미하는 변수
 
 	void print_usage();				//memory 사용량 출력
