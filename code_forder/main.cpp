@@ -8,7 +8,6 @@ int main(void)
 	utility utility; //메모리를 관리할 클래스 변수
 	std::string complete_command; //명령어를 저장하는 변수
 
-
 	while (1) //pp받을 때까지 반복한다
 	{
 		std::cout << std::endl; //한 줄 띄우고 시작
