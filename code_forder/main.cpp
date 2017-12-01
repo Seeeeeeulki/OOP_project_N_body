@@ -8,10 +8,11 @@ int main(void)
 	utility utility; //메모리를 관리할 클래스 변수
 	std::string complete_command; //명령어를 저장하는 변수
 
+
 	while (1) //pp받을 때까지 반복한다
 	{
 		std::cout << std::endl; //한 줄 띄우고 시작
-		std::cout << "Enter a command: ";
+		std::cout << "Enter a command(or help): ";
 		std::getline(std::cin, complete_command);				//한 줄을 통째로 입력받는다
 		std::stringstream stringstream(complete_command);		//sring형을 srtingstream class에 넣는다
 		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//스페이스바를 기준으로 split한다
@@ -252,6 +253,30 @@ int main(void)
 			utility.delete_all();
 			utility.print_usage();
 			break;
+		}
+		else if (command[0] == "help")//show the command list
+		{
+			std::cout << "pa : print information about all the particles" << std::endl;
+			std::cout << "pp <particle> : print information of particle" << std::endl;
+			std::cout << "ps <set> : print information about set <set>" << std::endl;
+			std::cout << "pf : print information of forces" << std::endl;
+			std::cout << "pt : print the current time" << std::endl;
+			std::cout << "pm : print the memory usage" << std::endl;
+			std::cout << "pg : print gravity is on or off" << std::endl;
+			std::cout << "ap <particle> <mass> <x> <y> <v_x> <v_y>: Add a particle <particle> with given mass and initial x, y location and x, y speed, \n i.e., initial location is given as a vector (<x>, <y>) and initial velocity is given as a vector (<v_x>, <v_y>)" << std::endl;
+			std::cout << "as <set>: add a set <set>" << std::endl;
+			std::cout << "ae <set> <particle>: add a particle <particle> to a set <set>" << std::endl;
+			std::cout << "af <force> <set> <x> <y>: add a force <force>, which is imposed on the particles in set <set> whose size is given as a vector (<x>, <y>)" << std::endl;
+			std::cout << "dp <particle>: delete particle <particle>" << std::endl;
+			std::cout << "de <set> <particle>: delete particle <particle> from set <set>. Note that this does not delete particle, but remove a particle from a set" << std::endl;
+			std::cout << "df <force>: delete force <force>" << std::endl;
+			std::cout << "da: delete all particles, sets and forces" << std::endl;
+			std::cout << "ct <tick>: change timetick (in seconds)" << std::endl;
+			std::cout << "cg <bool>: enable gravity if <bool> is \"true\", and disable gravity if <bool> is \"false\"" << std::endl;
+			std::cout << "cp <particle> <bool>: fix or unfix the location of particle <particle>, depending on <bool>" << std::endl;
+			std::cout << "ru <duration>: run the simulation for <duration> seconds" << std::endl;
+			std::cout << "rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick" << std::endl;
+			std::cout << "qq : stop simulation and delete all sets, particles and forces and print memory" << std::endl;
 		}
 
 		else  //해당하는 명령어가 없을 때
