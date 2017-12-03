@@ -246,6 +246,11 @@ int main(void)
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick
 		{
 			std::cout << "rv입력됨" << std::endl;
+			double duration = atof(command[1].c_str());
+			std::cout << "simulation started" << std::endl;
+			std::cout << "run simulation for" << duration << "second" << std::endl;
+			run_simulation_rv(utility, duration);
+			std::cout << "simulation ended" << std::endl;
 		}
 
 		else if (command[0] == "qq") //stop the simulation
