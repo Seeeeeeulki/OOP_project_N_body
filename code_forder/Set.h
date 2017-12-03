@@ -2,20 +2,20 @@
 #include "Particle.h"
 #include "Force.h"
 #include <vector>
-class set				//N_body_simulation에서 set을 표현
+class set				//class 'set' of N_body_simulation
 {
 public:
-	std::vector<particle*> particle_set; //particle의 list를 저장한다
-	std::vector<force*> force_set;		 //set에 적용되는 force들을 저장한다
+	std::vector<particle*> particle_set; //save list of particle
+	std::vector<force*> force_set;		 //save force applied on set
 
-	double force_x = 0;					 //set에 적용되는 전체 x방향 힘
-	double force_y = 0;				 	 //set에 적용되는 전체 y방향 힘
-	std::string set_name;			 	 //set 이름
+	double force_x = 0;					 //entire x-direction force applied on set
+	double force_y = 0;				 	 //entire y-direction force applied on set
+	std::string set_name;			 	 //set name
 
 	set(std::string name);
-	void Print_Set();					//set의 정보를 출력한다
-	void add_particle(particle* A);		//set의 particle list에 particle A를 넣는다.
-	void add_force(force* A);			//set의 force에 force* A의 힘을 더한다
-	void delete_particle(particle* A);		//특정 particle을 set에서 제외한다.
+	void Print_Set();					//print set's information
+	void add_particle(particle* A);		//add particle A in particle list of set
+	void add_force(force* A);			//add force A in force of set
+	void delete_particle(particle* A);		//delete certain particle in set
 	void delete_force(force* A);
 };
