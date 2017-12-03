@@ -9,7 +9,7 @@ void utility::print_usage()
 
 void utility::delete_particle(particle* A)
 {
-	for (int i = 0; i < all_set.size(); i++) //particle이 set에 속해 있으면 그 set에서 지운다
+	for (int i = 0; i < all_set.size(); i++) //if particle is in set, delete from that set
 	{
 		for (int i2 = 0; i2 < all_set[i]->particle_set.size(); i2++)
 		{
@@ -22,16 +22,16 @@ void utility::delete_particle(particle* A)
 
 	for (int i = 0; i < all_particle.size(); i++)
 	{
-		if (all_particle[i] == A) //주소가 같은지 확인한다
+		if (all_particle[i] == A) //check if address is same
 		{
-			all_particle.erase(all_particle.begin() + i); //주소가 같으면 지운다
+			all_particle.erase(all_particle.begin() + i); //if the address is same, erase it
 		}
 	}
 }
 
 void utility::delete_force(force* A)
 {
-	for (int i = 0; i < all_set.size(); i++) //force가 set에 속해 있으면 그 set에서 지운다
+	for (int i = 0; i < all_set.size(); i++) //if the force is in set, erase from that set
 	{
 		for (int i2 = 0; i2 < all_set[i]->force_set.size(); i2++)
 		{
@@ -44,14 +44,14 @@ void utility::delete_force(force* A)
 
 	for (int i = 0; i < all_force.size(); i++)
 	{
-		if (all_force[i] == A) //주소가 같은지 확인한다
+		if (all_force[i] == A) //check if address is same
 		{
-			all_force.erase(all_force.begin() + i); //주소가 같으면 지운다
+			all_force.erase(all_force.begin() + i); //if the address is same, erase it
 		}
 	}
 }
 
-void utility::delete_all() //particle 지우고 force지우고 set을 지운다(순서 바꾸지 말 것)
+void utility::delete_all() //delete particle, delete force, delete set(DO NOT CHANGE ORDER!)
 {
 	while (1)
 	{
@@ -78,7 +78,7 @@ void utility::delete_all() //particle 지우고 force지우고 set을 지운다(순서 바꾸�
 		//std::cout << all_set.size() << std::endl; //test code
 
 	}
-	if (all_particle.size() == 0 && all_force.size()==0 && all_set.size() == 0) //모든 동적할당이 제대로 지워지면 실행
+	if (all_particle.size() == 0 && all_force.size()==0 && all_set.size() == 0) //if all dynamic allocation has been deleted, execute it
 	{
 		std::cout << "All particles deleted" << std::endl;
 		std::cout << "All forces deleted" << std::endl;
