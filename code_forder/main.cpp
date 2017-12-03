@@ -1,22 +1,22 @@
 #include "main.h"
-#include <sstream>		//stringsteamÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ð
-#include <iterator>		//istream_iteratorÀ» »ç¿ëÇÏ±â À§ÇØ ¼±¾ð
+#include <sstream>		//declare to use stringsteam
+#include <iterator>		//declare to use istream_iterator
 
 
 int main(void)
 {
-	utility utility; //¸Þ¸ð¸®¸¦ °ü¸®ÇÒ Å¬·¡½º º¯¼ö
-	std::string complete_command; //¸í·É¾î¸¦ ÀúÀåÇÏ´Â º¯¼ö
+	utility utility; //class variable which will manage memory
+	std::string complete_command; //command-saving variable
 
 
-	while (1) //pp¹ÞÀ» ¶§±îÁö ¹Ýº¹ÇÑ´Ù
+	while (1) //repeat until recieve pp
 	{
-		std::cout << std::endl; //ÇÑ ÁÙ ¶ç¿ì°í ½ÃÀÛ
+		std::cout << std::endl; //line wrapping before start
 		std::cout << "Enter a command(or help): ";
-		std::getline(std::cin, complete_command);				//ÇÑ ÁÙÀ» ÅëÂ°·Î ÀÔ·Â¹Þ´Â´Ù
-		std::stringstream stringstream(complete_command);		//sringÇüÀ» srtingstream class¿¡ ³Ö´Â´Ù
-		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//½ºÆäÀÌ½º¹Ù¸¦ ±âÁØÀ¸·Î splitÇÑ´Ù
-		//splitµÈ ÀÔ·Â°ªÀº Â÷·Ê´ë·Î command vector¿¡ ½×ÀÌ°Ô µÈ´Ù
+		std::getline(std::cin, complete_command);				//get a whole line
+		std::stringstream stringstream(complete_command);		//add string in srtingstream class
+		std::vector<std::string> command((std::istream_iterator<std::string>(stringstream)), std::istream_iterator<std::string>());	//ìŠ¤íŽ˜ì´ìŠ¤ë°”ë¥¼ ê¸°ì¤€ìœ¼ë¡œ splití•œë‹¤
+		//splited input values are stacked at command vector in turn
 
 		if (command[0] == "pa") //pa: print information about all the particles
 		{
@@ -34,7 +34,7 @@ int main(void)
 		{
 			if (find_particle(utility, command[1])->particle_name == "no_particle")
 			{
-				std::cout << "ÇØ´çÇÏ´Â particleÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” particleì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -46,7 +46,7 @@ int main(void)
 		{
 			if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "ÇØ´çÇÏ´Â setÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” setì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -59,7 +59,7 @@ int main(void)
 		{
 			if (find_force(utility, command[1])->force_name == "no_force")
 			{
-				std::cout << "ÇØ´çÇÏ´Â force°¡ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” forceê°€ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -94,14 +94,14 @@ int main(void)
 									//is given as a vector (<v_x>, <v_y>)
 		{
 			utility.all_particle.push_back(new particle{command[1], std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
-			//particleÀ» new·Î ¼±¾ðÇÏ°í ÁÖ¼Ò¸¦ all_particle vectorº¯¼ö¿¡ Â÷·Ê´ë·Î ½×´Â´Ù
+			//declare particle as new, and stack address in all_particle vector variable in turn
 			std::cout << "particle " << utility.all_particle[utility.all_particle.size()-1]->particle_name << " added" << std::endl;
 		}
 
 		else if (command[0] == "as") //as <set>: add a set <set>
 		{
 			utility.all_set.push_back(new set(command[1]));
-			//setÀ» new·Î ¼±¾ðÇÏ°í ÁÖ¼Ò¸¦ all_set vectorº¯¼ö¿¡ Â÷·Ê´ë·Î ½×´Â´Ù
+			//declare set as new, and stack address in all_set vector variable in turn
 			std::cout << "Set " << utility.all_set[utility.all_set.size() - 1]->set_name << " added" << std::endl;
 		}
 
@@ -109,11 +109,11 @@ int main(void)
 		{
 			if (find_particle(utility, command[2])->particle_name == "no_particle")
 			{
-				std::cout << "ÇØ´çÇÏ´Â particleÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” particleì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "ÇØ´çÇÏ´Â setÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” setì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -125,7 +125,7 @@ int main(void)
 		{
 			if (find_set(utility, command[2])->set_name == "no_set")
 			{
-				std::cout << "ÇØ´çÇÏ´Â setÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” setì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -136,18 +136,18 @@ int main(void)
 
 		else if (command[0] == "dp") //dp <particle>: delete particle <particle>
 		{
-			//utility.all_particle¿¡¼­ erase
-			//¹Ì¸® º¹»çÇØµÐ ÁÖ¼Ò¸¦ delete
+			//erase from utility.all_particle
+			//delete address that already copied
 			if (find_particle(utility, command[1])->particle_name == "no_particle")
 			{
-				std::cout << "ÇØ´çÇÏ´Â particleÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” particleì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
 				particle* erase = find_particle(utility, command[1]);
-				utility.delete_particle(find_particle(utility, command[1])); //vector¿¡¼­ Áö¿î´Ù
+				utility.delete_particle(find_particle(utility, command[1])); //delete from vector
 				std::cout<<"Particle " << erase->particle_name << " deleted" << std::endl;
-				delete erase; //µ¿ÀûÇÒ´çÀ» ÇìÀçÇÑ´Ù
+				delete erase; //cancel dynamic allocation
 			}
 		}
 
@@ -155,11 +155,11 @@ int main(void)
 		{
 			if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "ÇØ´çÇÏ´Â setÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” setì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else if (find_particle(utility, command[2])->particle_name == "no_particle")
 			{
-				std::cout << "ÇØ´çÇÏ´Â particleÀÌ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” particleì´ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
@@ -170,20 +170,20 @@ int main(void)
 
 		else if (command[0] == "df") //df <force>: delete force <force>
 		{
-			//utility.all_force¿¡¼­ erase
-			//¹Ì¸® º¹»çÇØµÐ ÁÖ¼Ò¸¦ delete
+			//erase from utility.all_force
+			//delete address that already copied
 			if (find_force(utility, command[1])->force_name == "no_force")
 			{
-				std::cout << "ÇØ´çÇÏ´Â force°¡ ¾ø½À´Ï´Ù." << std::endl;
+				std::cout << "í•´ë‹¹í•˜ëŠ” forceê°€ ì—†ìŠµë‹ˆë‹¤." << std::endl;
 			}
 			else
 			{
 
-				////±¸Çö ÇØ¾ßÇÔ
+				////êµ¬í˜„ í•´ì•¼í•¨
 				force* erase = find_force(utility, command[1]);
-				utility.delete_force(find_force(utility, command[1]));					//vector¿¡¼­ Áö¿î´Ù
+				utility.delete_force(find_force(utility, command[1]));					//delete from vector
 				std::cout << "Force " << erase->force_name << " deleted" << std::endl;
-				delete erase; //µ¿ÀûÇÒ´çÀ» ÇìÀçÇÑ´Ù
+				delete erase; //cancel dynamic allocation
 			}
 		}
 
@@ -212,7 +212,7 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "Àß¸øµÈ ¸í·É¾î ÀÔ´Ï´Ù" << std::endl;
+				std::cout << "ìž˜ëª»ëœ ëª…ë ¹ì–´ ìž…ë‹ˆë‹¤" << std::endl;
 			}
 		}
 
@@ -230,13 +230,13 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "Àß¸øµÈ ¸í·É¾î ÀÔ´Ï´Ù" << std::endl;
+				std::cout << "ìž˜ëª»ëœ ëª…ë ¹ì–´ ìž…ë‹ˆë‹¤" << std::endl;
 			}
 		}
 
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
 		{
-			std::cout << "ruÀÔ·ÂµÊ" << std::endl;
+			std::cout << "ruìž…ë ¥ë¨" << std::endl;
 			double duration = atof(command[1].c_str());
 			std::cout << duration << std::endl;
 			run_simulation_ru(utility, duration);
@@ -245,7 +245,7 @@ int main(void)
 
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick
 		{
-			std::cout << "rvÀÔ·ÂµÊ" << std::endl;
+			std::cout << "rvìž…ë ¥ë¨" << std::endl;
 		}
 
 		else if (command[0] == "qq") //stop the simulation
@@ -279,13 +279,13 @@ int main(void)
 			std::cout << "qq : stop simulation and delete all sets, particles and forces and print memory" << std::endl;
 		}
 
-		else  //ÇØ´çÇÏ´Â ¸í·É¾î°¡ ¾øÀ» ¶§
+		else  //if there is no wanted command
 		{
-			std::cout << "Àß¸øµÈ ¸í·É¾î¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù." << std::endl;
+			std::cout << "ìž˜ëª»ëœ ëª…ë ¹ì–´ë¥¼ ìž…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤." << std::endl;
 		}
 	}
 
-	std::cout <<"Done(ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù)" << std::endl;
+	std::cout <<"Done(í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤)" << std::endl;
 
 	return 0;
 }
