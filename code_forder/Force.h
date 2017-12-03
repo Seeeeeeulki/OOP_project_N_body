@@ -1,31 +1,31 @@
 #pragma once
 #include <string>
 #include <iostream>
-class force		//simulation에서 힘을 나타내는 클래스
+class force		//class that meaning 'force' in the simulation
 {
 private:
-	double x;	//x방향 힘
-	double y;	//y방향 힘
+	double x;	//x-direction force
+	double y;	//y-direction force
 
 public:
-	std::string force_name;//force의 이름을 나타낸다
-	std::string set_force; //force가 적용되는 set
+	std::string force_name;//represent force's name
+	std::string set_force; //represent set which is applied the force
 
-	force(std::string force_name, std::string set_force, double x, double y); //force 초기화 함수
-	void print_force();		//force의 정보를 출력한다
-	void set_force_x(double force_x) //x방향의 힘을 설정한다
+	force(std::string force_name, std::string set_force, double x, double y); //force initialization
+	void print_force();		//print force information
+	void set_force_x(double force_x) //set x-direction force
 	{
 		x = force_x;
 	}
-	void set_force_y(double force_y) //y방향의 힘을 설정한다
+	void set_force_y(double force_y) //set y-direction force
 	{
 		y = force_y;
 	}
-	double get_force_x()	//x방향의 힘을 반환한다.
+	double get_force_x()	//return x-diretion force
 	{
 		return x;
 	}
-	double get_force_y()	//y방향의 힘을 반환한다.
+	double get_force_y()	//return y-direction force
 	{
 		return y;
 	}
