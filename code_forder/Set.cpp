@@ -21,12 +21,12 @@ void set::add_particle(particle* A)
 	{
 		if (particle_set[i]->particle_name == A->particle_name)
 		{
-			std::cout << "ÀÌ¹Ì Æ÷ÇÔµÈ particleÀÔ´Ï´Ù." << std::endl;
+			std::cout << "ì´ë¯¸ í¬í•¨ëœ particleìž…ë‹ˆë‹¤." << std::endl;
 			overlap = 1;
 		}
 		if (particle_set[i]->location[0] == A->location[0] && particle_set[i]->location[1] == A->location[1])
 		{
-			std::cout << "ÀÌ¹Ì ÇØ´ç À§Ä¡¿¡ particleÀÌ ÀÖ½À´Ï´Ù." << std::endl;
+			std::cout << "ì´ë¯¸ í•´ë‹¹ ìœ„ì¹˜ì— particleì´ ìžˆìŠµë‹ˆë‹¤." << std::endl;
 			overlap = 1;
 		}
 	}
@@ -44,7 +44,7 @@ void set::add_force(force* A)
 	{
 		if (force_set[i]->force_name == A->force_name)
 		{
-			std::cout << "ÀÌ¹Ì Æ÷ÇÔµÈ forceÀÔ´Ï´Ù." << std::endl;
+			std::cout << "ì´ë¯¸ í¬í•¨ëœ forceìž…ë‹ˆë‹¤." << std::endl;
 			overlap = 1;
 		}
 	}
@@ -61,7 +61,7 @@ void set::delete_particle(particle* A)
 {
 	for (int i = 0; i < particle_set.size(); i++)
 	{
-		if (particle_set[i] == A) //ÁÖ¼Ò°¡ °°ÀºÁö È®ÀÎÇÑ´Ù
+		if (particle_set[i] == A) //check if address is same
 		{
 			particle_set.erase(particle_set.begin() + i);
 		}
@@ -75,9 +75,9 @@ void set::delete_force(force * A)
 
 	for (int i = 0; i < force_set.size(); i++)
 	{
-		if (force_set[i] == A) //ÁÖ¼Ò°¡ °°ÀºÁö È®ÀÎÇÑ´Ù
+		if (force_set[i] == A) //check if address is same
 		{
-			force_set.erase(force_set.begin() + i); //ÁÖ¼Ò°¡ °°À¸¸é Áö¿î´Ù
+			force_set.erase(force_set.begin() + i); //if address is same, erase it
 		}
 	}
 }
