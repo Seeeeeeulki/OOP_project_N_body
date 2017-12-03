@@ -3,15 +3,15 @@
 class utility
 {
 public:
-	std::vector<particle*> all_particle;//모든 particle를 저장한다
-	std::vector<set*> all_set;			//모든 set를 저장한다
-	std::vector<force*> all_force;		//모든 force를 저장한다
+	std::vector<particle*> all_particle;//save all particle
+	std::vector<set*> all_set;			//save all set
+	std::vector<force*> all_force;		//save all force
 
-	bool enable_gravity = true;			//gravity 기능 여부를 결정하는 변수
-	int timetick = 5;					//timetick을 의미하는 변수
+	bool enable_gravity = true;			//variable that determine about gravity functional
+	int timetick = 5;					//variable meaning timetick
 
-	void print_usage();				//memory 사용량 출력
-	void delete_particle(particle* A);			//particle을 메모리에서 제거
-	void delete_force(force* A);			//force를 메모리에서 제거
-	void delete_all();				//메로리 초기화
+	void print_usage();				//print memory usage
+	void delete_particle(particle* A);			//delete particle from memory
+	void delete_force(force* A);			//delete force from memory
+	void delete_all();				//memory initialize
 };
