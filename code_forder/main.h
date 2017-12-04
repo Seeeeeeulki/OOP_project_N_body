@@ -1,6 +1,7 @@
 #pragma once
 #include"Utility.h"
-#include<math.h>
+#include <Windows.h>
+#include <math.h>
 
 double time = 0;						//current time을 의미하는 변수
 particle* no_particle = new particle("no_particle",0,0,0,0,0);  //해당하는 particle이 없을때 반환
@@ -49,6 +50,12 @@ void run_simulation_ru(utility utility, double duration) //run simulation for du
 	int count = 0;
 	while (count < duration/pow(unit_time,2))
 	{
+		if (GetAsyncKeyState(VK_ESCAPE)) //esc 입력시 시뮬레이션 중지
+		{
+			std::cout << "ESCAPE-PRESSED" << std::endl;
+			break;
+		}
+		
 		std::cout << "\r" << "processing" << (count*unit_time / duration) << "%" ;
 		count += 1/unit_time;
 		for (int a = 0; a < utility.all_set.size(); a++)
@@ -97,6 +104,12 @@ void run_simulation_rv(utility utility , double duration) //run simulation for d
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))//check duration
 	{
+		if (GetAsyncKeyState(VK_ESCAPE)) //esc 입력시 시뮬레이션 중지
+		{
+			std::cout << "ESCAPE-PRESSED" << std::endl;
+			break;
+		}
+
 		std::cout  << "processing" << (count*unit_time / duration) << "%\r";
 		count += 1 / unit_time;
 		if (utility.all_particle.size() != 0)//check particles size if 0 we do not have to print out information about particles

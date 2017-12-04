@@ -34,7 +34,7 @@ int main(void)
 		{
 			if (find_particle(utility, command[1])->particle_name == "no_particle")
 			{
-				std::cout << "해당하는 particle이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -46,7 +46,7 @@ int main(void)
 		{
 			if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "해당하는 set이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -59,7 +59,7 @@ int main(void)
 		{
 			if (find_force(utility, command[1])->force_name == "no_force")
 			{
-				std::cout << "해당하는 force가 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -109,11 +109,11 @@ int main(void)
 		{
 			if (find_particle(utility, command[2])->particle_name == "no_particle")
 			{
-				std::cout << "해당하는 particle이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "해당하는 set이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -125,7 +125,7 @@ int main(void)
 		{
 			if (find_set(utility, command[2])->set_name == "no_set")
 			{
-				std::cout << "해당하는 set이 없습니다." << std::endl;
+				std::cout << "There is no corresponding set" << std::endl;
 			}
 			else
 			{
@@ -140,7 +140,7 @@ int main(void)
 			//delete copied address
 			if (find_particle(utility, command[1])->particle_name == "no_particle")
 			{
-				std::cout << "해당하는 particle이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -155,11 +155,11 @@ int main(void)
 		{
 			if (find_set(utility, command[1])->set_name == "no_set")
 			{
-				std::cout << "해당하는 set이 없습니다." << std::endl;
+				std::cout << "There is no corresponding set" << std::endl;
 			}
 			else if (find_particle(utility, command[2])->particle_name == "no_particle")
 			{
-				std::cout << "해당하는 particle이 없습니다." << std::endl;
+				std::cout << "There is no corresponding particle" << std::endl;
 			}
 			else
 			{
@@ -174,7 +174,7 @@ int main(void)
 			//미리 복사해둔 주소를 delete
 			if (find_force(utility, command[1])->force_name == "no_force")
 			{
-				std::cout << "해당하는 force가 없습니다." << std::endl;
+				std::cout << "There is no corresponding force" << std::endl;
 			}
 			else
 			{
@@ -287,11 +287,11 @@ int main(void)
 
 		else  //if command is wrong
 		{
-			std::cout << "잘못된 명령어를 입력하였습니다." << std::endl;
+			std::cout << "Incorrect command entered" << std::endl;
 		}
 	}
 
-	std::cout <<"Done(프로그램을 종료합니다)" << std::endl;
+	std::cout <<"Done" << std::endl;
 
 	return 0;
 }

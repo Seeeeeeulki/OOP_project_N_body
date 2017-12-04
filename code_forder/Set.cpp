@@ -21,12 +21,12 @@ void set::add_particle(particle* A)
 	{
 		if (particle_set[i]->particle_name == A->particle_name)
 		{
-			std::cout << "이미 포함된 particle입니다." << std::endl;
+			std::cout << "This is already included particle" << std::endl;
 			overlap = 1;
 		}
 		if (particle_set[i]->location[0] == A->location[0] && particle_set[i]->location[1] == A->location[1])
 		{
-			std::cout << "이미 해당 위치에 particle이 있습니다." << std::endl;
+			std::cout << "There is a particle in the same location" << std::endl;
 			overlap = 1;
 		}
 	}
@@ -44,7 +44,7 @@ void set::add_force(force* A)
 	{
 		if (force_set[i]->force_name == A->force_name)
 		{
-			std::cout << "이미 포함된 force입니다." << std::endl;
+			std::cout << "This is already included force" << std::endl;
 			overlap = 1;
 		}
 	}
