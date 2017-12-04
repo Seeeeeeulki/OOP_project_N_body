@@ -212,7 +212,7 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "잘못된 명령어 입니다" << std::endl;
+				std::cout << "This is an invalid command" << std::endl;
 			}
 		}
 
@@ -230,14 +230,14 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "잘못된 명령어 입니다" << std::endl;
+				std::cout << "This is an invalid command" << std::endl;
 			}
 		}
 
 		else if (command[0] == "ru") //ru <duration>: run the simulation for <duration> seconds
 		{
-			std::cout << "ru입력됨" << std::endl;
-			double duration = atof(command[1].c_str());
+			std::cout << "ru input" << std::endl;
+			double duration = std::stod(command[1].c_str());
 			std::cout << duration << std::endl;
 			run_simulation_ru(utility, duration);
 			std::cout << "simulation started" << std::endl;
@@ -245,8 +245,8 @@ int main(void)
 
 		else if (command[0] == "rv") //rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick
 		{
-			std::cout << "rv입력됨" << std::endl;
-			double duration = atof(command[1].c_str());
+			std::cout << "rv input" << std::endl;
+			double duration = std::stod(command[1].c_str());
 			std::cout << "simulation started" << std::endl;
 			std::cout << "run simulation for" << duration << "second" << std::endl;
 			run_simulation_rv(utility, duration);

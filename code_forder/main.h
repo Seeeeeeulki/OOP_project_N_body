@@ -91,7 +91,7 @@ void run_simulation_ru(utility utility, double duration) //ru명령어 시뮬레
 	}
 	time += count*pow(unit_time,2);
 }
-void run_simulation_rv(utility utility , int duration) //rv명령어 시뮬레이션을 duration시간동안 실행한다
+void run_simulation_rv(utility utility , double duration) //rv명령어 시뮬레이션을 duration시간동안 실행한다
 {
 	double unit_time = 0.01;
 	int count = 0;
