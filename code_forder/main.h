@@ -63,11 +63,10 @@ void run_simulation_ru(utility utility, double duration) //run simulation for du
 						{
 							long double x_gap = utility.all_set[a]->particle_set[b]->location[0] - utility.all_set[a]->particle_set[c]->location[0];//x difference between particle b and c
 							long double y_gap = utility.all_set[a]->particle_set[b]->location[1] - utility.all_set[a]->particle_set[c]->location[1];//y difference between particle b and c
-							double b_mass = utility.all_set[a]->particle_set[b]->mass;//b의 무게
 							double c_mass = utility.all_set[a]->particle_set[c]->mass;//c의 무게
 							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//b와 c의 거리
-							utility.all_set[a]->particle_set[b]->velocity[0] += 6.67259*b_mass / r*x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
-							utility.all_set[a]->particle_set[b]->velocity[1] += 6.67259*b_mass / r*y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
+							utility.all_set[a]->particle_set[b]->velocity[0] -= 6.67259*c_mass / r*x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
+							utility.all_set[a]->particle_set[b]->velocity[1] -= 6.67259*c_mass / r*y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
 						}
 					}
 				}
@@ -98,7 +97,7 @@ void run_simulation_rv(utility utility , double duration) //run simulation for d
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))//check duration
 	{
-		std::cout << "\r" << "processing" << (count*unit_time / duration) << "%";
+		std::cout  << "processing" << (count*unit_time / duration) << "%\r";
 		count += 1 / unit_time;
 		if (utility.all_particle.size() != 0)//check particles size if 0 we do not have to print out information about particles
 		{
@@ -106,9 +105,7 @@ void run_simulation_rv(utility utility , double duration) //run simulation for d
 			if (fmod(a,utility.timetick) == 0)//if timetick print
 				for (int i = 0; i < utility.all_particle.size(); i++)
 				{
-					std::cout << "\rParticle: " << utility.all_particle[i]->particle_name << "                   "<<std::endl;
-					std::cout << "	Location: (" << utility.all_particle[i]->location[0] << ", " << utility.all_particle[i]->location[1] << ")" << std::endl;
-					std::cout << "	Velocity: (" << utility.all_particle[i]->velocity[0] << ", " << utility.all_particle[i]->velocity[1] << ")" << std::endl;
+					utility.all_particle[i]->Print_particle();
 				}
 		}
 		for (int a = 0; a < utility.all_set.size(); a++)
@@ -123,11 +120,10 @@ void run_simulation_rv(utility utility , double duration) //run simulation for d
 						{
 							long double x_gap = utility.all_set[a]->particle_set[b]->location[0] - utility.all_set[a]->particle_set[c]->location[0];//x difference between particle b and c
 							long double y_gap = utility.all_set[a]->particle_set[b]->location[1] - utility.all_set[a]->particle_set[c]->location[1];//y difference between particle b and c
-							double b_mass = utility.all_set[a]->particle_set[b]->mass;//mass of b
 							double c_mass = utility.all_set[a]->particle_set[c]->mass;//mass of c
 							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//distance b and c 
-							utility.all_set[a]->particle_set[b]->velocity[0] += 6.67259*b_mass / r*x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
-							utility.all_set[a]->particle_set[b]->velocity[1] += 6.67259*b_mass / r*y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
+							utility.all_set[a]->particle_set[b]->velocity[0] -= 6.67259*c_mass / r*x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
+							utility.all_set[a]->particle_set[b]->velocity[1] -= 6.67259*c_mass / r*y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
 						}
 					}
 				}

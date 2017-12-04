@@ -11,7 +11,7 @@ particle::particle(std::string name, double mass, double x, double y, double v_x
 
 void particle::Print_particle()
 {
-	std::cout << "Particle: " << particle_name << std::endl;
+	std::cout << "Particle: " << particle_name << "                "<<std::endl;
 	std::cout << "	Location: (" << location[0] << ", " << location[1] << ")" << std::endl;
 	std::cout << "	Velocity: (" << velocity[0] << ", " << velocity[1] << ")" << std::endl;
 }
