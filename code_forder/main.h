@@ -98,7 +98,7 @@ void run_simulation_ru(utility utility, double duration) //run simulation for du
 	}
 	time += count*pow(unit_time,2);
 }
-void run_simulation_rv(utility utility , double duration) //run simulation for duration
+void run_simulation_rv(utility utility , double duration) //run simulation for duration and print particle information per time_tick
 {
 	double unit_time = 0.01;
 	int count = 0;
@@ -118,6 +118,7 @@ void run_simulation_rv(utility utility , double duration) //run simulation for d
 			if (fmod(a,utility.timetick) == 0)//if timetick print
 				for (int i = 0; i < utility.all_particle.size(); i++)
 				{
+					std::cout << count * pow(unit_time, 2) << "second simulation" << std::endl;
 					utility.all_particle[i]->Print_particle();
 				}
 		}
