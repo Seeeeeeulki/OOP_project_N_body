@@ -92,7 +92,7 @@ void utility::run_simulation_ru(utility utility, double duration) //run simulati
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))
 	{
-		if (GetAsyncKeyState(VK_ESCAPE)) //esc ÀÔ·Â½Ã ½Ã¹Ä·¹ÀÌ¼Ç ÁßÁö
+		if (GetAsyncKeyState(VK_ESCAPE)) //simulation stop when when 'ESC' key pressed
 		{
 			std::cout << "ESCAPE-PRESSED" << std::endl;
 			break;
@@ -112,8 +112,8 @@ void utility::run_simulation_ru(utility utility, double duration) //run simulati
 						{
 							long double x_gap = utility.all_set[a]->particle_set[b]->location[0] - utility.all_set[a]->particle_set[c]->location[0];//x difference between particle b and c
 							long double y_gap = utility.all_set[a]->particle_set[b]->location[1] - utility.all_set[a]->particle_set[c]->location[1];//y difference between particle b and c
-							double c_mass = utility.all_set[a]->particle_set[c]->mass;//cÀÇ ¹«°Ô
-							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//b¿Í cÀÇ °Å¸®
+							double c_mass = utility.all_set[a]->particle_set[c]->mass;//cì˜ ë¬´ê²Œ
+							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//bì™€ cì˜ ê±°ë¦¬
 							utility.all_set[a]->particle_set[b]->velocity[0] -= 6.67259*c_mass / r * x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
 							utility.all_set[a]->particle_set[b]->velocity[1] -= 6.67259*c_mass / r * y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
 						}
@@ -145,7 +145,7 @@ void utility::run_simulation_rv(utility utility, double duration) //run simulati
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))//check duration
 	{
-		if (GetAsyncKeyState(VK_ESCAPE)) //esc ÀÔ·Â½Ã ½Ã¹Ä·¹ÀÌ¼Ç ÁßÁö
+		if (GetAsyncKeyState(VK_ESCAPE)) //simulation stop when esc pressed
 		{
 			std::cout << "ESCAPE-PRESSED" << std::endl;
 			break;
