@@ -86,19 +86,18 @@ void utility::delete_all() //delete particle, delete force, delete set(DO NOT CH
 		std::cout << "All sets deleted" << std::endl;
 	}
 }
-void utility::run_simulation_ru(utility utility, double duration) //run simulation for duration
+double utility::run_simulation_ru(utility utility, double duration) //run simulation for duration
 {
 	double unit_time = 0.01;
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))
 	{
-		if (GetAsyncKeyState(VK_ESCAPE)) //simulation stop when when 'ESC' key pressed
+		std::cout << "\r" << "processing" << (count*unit_time / duration) << "%"; 
+		if (GetAsyncKeyState(VK_ESCAPE)) //esc ÀÔ·Â½Ã ½Ã¹Ä·¹ÀÌ¼Ç ÁßÁö
 		{
-			std::cout << "ESCAPE-PRESSED" << std::endl;
+			std::cout << "\nESCAPE-PRESSED" << std::endl;
 			break;
 		}
-
-		std::cout << "\r" << "processing" << (count*unit_time / duration) << "%";
 		count += 1 / unit_time;
 		for (int a = 0; a < utility.all_set.size(); a++)
 		{
@@ -112,8 +111,8 @@ void utility::run_simulation_ru(utility utility, double duration) //run simulati
 						{
 							long double x_gap = utility.all_set[a]->particle_set[b]->location[0] - utility.all_set[a]->particle_set[c]->location[0];//x difference between particle b and c
 							long double y_gap = utility.all_set[a]->particle_set[b]->location[1] - utility.all_set[a]->particle_set[c]->location[1];//y difference between particle b and c
-							double c_mass = utility.all_set[a]->particle_set[c]->mass;//cì˜ ë¬´ê²Œ
-							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//bì™€ cì˜ ê±°ë¦¬
+							double c_mass = utility.all_set[a]->particle_set[c]->mass;//cÀÇ ¹«°Ô
+							long double r = sqrt(pow(x_gap, 2) + pow(y_gap, 2));//b¿Í cÀÇ °Å¸®
 							utility.all_set[a]->particle_set[b]->velocity[0] -= 6.67259*c_mass / r * x_gap*unit_time / pow(10, 11);//accelate x gravity of unit_time to velocity
 							utility.all_set[a]->particle_set[b]->velocity[1] -= 6.67259*c_mass / r * y_gap*unit_time / pow(10, 11);//accelate y gravity of unit_time to velocity
 						}
@@ -138,20 +137,20 @@ void utility::run_simulation_ru(utility utility, double duration) //run simulati
 			}
 		}
 	}
+	return count*pow(unit_time, 2);
 }
-void utility::run_simulation_rv(utility utility, double duration) //run simulation for duration and print particle information per time_tick
+double utility::run_simulation_rv(utility utility, double duration) //run simulation for duration and print particle information per time_tick
 {
 	double unit_time = 0.01;
 	int count = 0;
 	while (count < duration / pow(unit_time, 2))//check duration
 	{
-		if (GetAsyncKeyState(VK_ESCAPE)) //simulation stop when esc pressed
+		std::cout << "\r" << "processing" << (count*unit_time / duration) << "%";
+		if (GetAsyncKeyState(VK_ESCAPE)) //esc ÀÔ·Â½Ã ½Ã¹Ä·¹ÀÌ¼Ç ÁßÁö
 		{
-			std::cout << "ESCAPE-PRESSED" << std::endl;
+			std::cout << "\nESCAPE-PRESSED" << std::endl;
 			break;
 		}
-
-		std::cout << "processing" << (count*unit_time / duration) << "%\r";
 		count += 1 / unit_time;
 		if (utility.all_particle.size() != 0)//check particles size if 0 we do not have to print out information about particles
 		{
@@ -159,7 +158,7 @@ void utility::run_simulation_rv(utility utility, double duration) //run simulati
 			if (fmod(a, utility.timetick) == 0)//if timetick print
 				for (int i = 0; i < utility.all_particle.size(); i++)
 				{
-					std::cout << count * pow(unit_time, 2) << "second simulation" << std::endl;
+					std::cout <<"\r" << count * pow(unit_time, 2) << "second simulation" << std::endl;
 					utility.all_particle[i]->Print_particle();
 				}
 		}
@@ -201,4 +200,5 @@ void utility::run_simulation_rv(utility utility, double duration) //run simulati
 			}
 		}
 	}
+	return count*pow(unit_time, 2);
 }

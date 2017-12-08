@@ -13,6 +13,6 @@ public:
 	void delete_particle(particle* A);			//delete particle from memory
 	void delete_force(force* A);			//delete force from memory
 	void delete_all();				//memory initialize
-	void run_simulation_ru(utility utility, double duration); //run simulation for duration
-	void run_simulation_rv(utility utility, double duration); //run simulation for duration
+	double run_simulation_ru(utility utility, double duration); //run simulation for duration
+	double run_simulation_rv(utility utility, double duration); //run simulation for duration
 };

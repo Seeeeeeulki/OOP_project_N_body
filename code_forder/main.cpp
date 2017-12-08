@@ -19,7 +19,18 @@ int main(void)
 		//splited input values are stacked at command vector in turn
 		if (command.size() != 0) 
 		{
-			if (command[0] == "pa") //pa: print information about all the particles
+			if (command[0] == "preset") 
+			{
+				if (command.size() == 1)
+				{
+					utility.all_particle.push_back(new particle{ "0", 1, 2, 3, 4, 5 });
+					utility.all_particle.push_back(new particle{ "1", 2, 3, 4, 5, 6 });
+					utility.all_set.push_back(new set("1"));
+					find_set(utility, "1")->add_particle(find_particle(utility, "0"));
+					find_set(utility, "1")->add_particle(find_particle(utility, "1"));
+				}
+			}
+			else if (command[0] == "pa") //pa: print information about all the particles
 			{
 				if (command.size() == 1)
 				{
@@ -365,11 +376,10 @@ int main(void)
 				{
 					std::cout << "ru inputed" << std::endl;
 					double duration = std::stod(command[1].c_str());
-					std::cout << "simulation started" << std::endl;
+					std::cout << "simulation started{press Esc to stop)" << std::endl;
 					std::cout << "run simulation for" << duration << "second" << std::endl;
-					utility.run_simulation_ru(utility, duration);
-					utility.time = utility.time + std::stof(command[1]);
-					std::cout << "\r" << "simulation ended" << std::endl;
+					utility.time = utility.time + utility.run_simulation_ru(utility, duration);
+					std::cout << "\rsimulation ended" << std::endl;
 				}
 				else
 				{
@@ -383,11 +393,10 @@ int main(void)
 				{
 					std::cout << "rv inputed" << std::endl;
 					double duration = std::stod(command[1].c_str());
-					std::cout << "simulation started" << std::endl;
+					std::cout << "simulation started{press Esc to stop)" << std::endl;
 					std::cout << "run simulation for" << duration << "second" << std::endl;
-					utility.run_simulation_rv(utility, duration);			
-					utility.time = utility.time + std::stof(command[1]);
-					std::cout << "simulation ended" << std::endl;
+					utility.time = utility.time + utility.run_simulation_rv(utility, duration);
+					std::cout << "\rsimulation ended" << std::endl;
 				}
 				else
 				{
@@ -433,6 +442,7 @@ int main(void)
 					std::cout << "ru <duration>: run the simulation for <duration> seconds" << std::endl;
 					std::cout << "rv <duration>: run the simulation for <duration> seconds and print out the location of each particle (x and y coordinates) at each tick" << std::endl;
 					std::cout << "qq : stop simulation and delete all sets, particles and forces and print memory" << std::endl;
+					std::cout << "preset : eneter ap 0 1 2 3 4 5, ap 1 2 3 4 5 6, as 1, ae 1 1, ae 1 0" << std::endl;
 				}
 				else
 				{

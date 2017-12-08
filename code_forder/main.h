@@ -1,6 +1,6 @@
 #pragma once
 #include"Utility.h"
-particle* no_particle = new particle("no_particle",0,0,0,0,0);  //return when there is no matching particle
+particle* no_particle = new particle("no_particle", 0, 0, 0, 0, 0);  //return when there is no matching particle
 set* no_set = new set("no_set");								//return when there is no matching set
 force* no_force = new force("no_force", " ", 0, 0);		//return when there is no matching force
 
@@ -39,4 +39,3 @@ force* find_force(utility utility, std::string command)
 	}
 	return no_force; //when there is no correct force, return dummy force(no_force)
 }
-
