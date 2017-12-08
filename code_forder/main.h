@@ -1,8 +1,8 @@
 #pragma once
 #include"Utility.h"
-particle* no_particle = new particle("no_particle",0,0,0,0,0);  //해당하는 particle이 없을때 반환
-set* no_set = new set("no_set");								//해당하는 set이 없을때 반환
-force* no_force = new force("no_force", " ", 0, 0);		//해당하는 force가 없을때 반환
+particle* no_particle = new particle("no_particle",0,0,0,0,0);  //return when there is no matching particle
+set* no_set = new set("no_set");								//return when there is no matching set
+force* no_force = new force("no_force", " ", 0, 0);		//return when there is no matching force
 
 particle* find_particle(utility utility, std::string command) //이름에 맞는 번호의 particle의 주소를 반환
 {
