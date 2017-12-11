@@ -19,7 +19,7 @@ int main(void)
 		//splited input values are stacked at command vector in turn
 		if (command.size() != 0) 
 		{
-			if (command[0] == "preset") 
+			if (command[0] == "preset") //testcode
 			{
 				if (command.size() == 1)
 				{
@@ -140,7 +140,7 @@ int main(void)
 					}
 					else
 					{
-						std::cout << "Gravity is avitve now" << std::endl;
+						std::cout << "Gravity is acitve now" << std::endl;
 					}
 				}
 				else

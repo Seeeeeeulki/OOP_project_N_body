@@ -158,7 +158,7 @@ double utility::run_simulation_rv(utility utility, double duration) //run simula
 			if (fmod(a, utility.timetick) == 0)//if timetick print
 				for (int i = 0; i < utility.all_particle.size(); i++)
 				{
-					std::cout <<"\r" << count * pow(unit_time, 2) << "second simulation" << std::endl;
+					std::cout <<"\r" << count * pow(unit_time, 2) << "second simulation         " << std::endl;
 					utility.all_particle[i]->Print_particle();
 				}
 		}
