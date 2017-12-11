@@ -155,9 +155,14 @@ int main(void)
 			{
 				if (command.size() == 7)
 				{
-					utility.all_particle.push_back(new particle{ command[1], std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
-					//declare particle as new, and stack address in all_particle vector variable in turn
-					std::cout << "particle " << utility.all_particle[utility.all_particle.size() - 1]->particle_name << " added" << std::endl;
+					if (stod(command[2]) > 0)
+					{
+						utility.all_particle.push_back(new particle{ command[1], std::stod(command[2]), std::stod(command[3]), std::stod(command[4]), std::stod(command[5]), std::stod(command[6]) });
+						//declare particle as new, and stack address in all_particle vector variable in turn
+						std::cout << "particle " << utility.all_particle[utility.all_particle.size() - 1]->particle_name << " added" << std::endl;
+					}
+					else
+						std::cout << "mass must be over 0" << std::endl;
 				}
 				else
 				{
